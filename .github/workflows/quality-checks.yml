@@ -1,0 +1,29 @@
+name: Quality Checks
+
+on:
+  pull_request:
+    branches:
+      - '**'
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  run-prettier-check:
+    name: Prettier Check
+    runs-on: [self-hosted, gh-runner-emea-stage]
+    steps:
+      - name: Check out Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Run Prettier Check
+        run: npm run check-format

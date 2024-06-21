@@ -1,0 +1,35 @@
+name: e2e Tests on PR
+
+on:
+  pull_request:
+    branches:
+      - '**'
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  run-tests:
+    name: Run Tests
+    # TODO: use self-hosted runner, this requires whitelisting all public resources access in the proxy
+    runs-on: ubuntu-latest
+    env:
+      BASE_URL: https://app.integration.at.farm
+      GRAPHQL_API_URL: https://one2021-integration.stage.emea.yaradigitallabs.io/graphql
+      ENVIRONMENT_NAME: integration
+    steps:
+      - name: Check out Code
+        uses: actions/checkout@v4
+
+      - name: Setup and Install
+        uses: ./.github/actions/setup-and-install-dependencies
+
+      - name: Run Tests
+        run: npm run run_tests_chromium
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 2

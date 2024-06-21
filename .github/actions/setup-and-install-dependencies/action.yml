@@ -1,0 +1,19 @@
+name: Setup Node and Install Dependencies
+description: Setup Node and Installs dependencies for the project
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Install Playwright Browsers
+      shell: bash
+      run: npx playwright install --with-deps
