@@ -1,0 +1,45 @@
+{
+  "name": "pm-atfarm-qa",
+  "version": "1.0.0",
+  "description": "Atfarm End to End Testing Automation",
+  "main": "index.js",
+  "scripts": {
+    "run_tests_ui": "npx playwright test --ui",
+    "run_tests_headed": "npx playwright test --headed",
+    "codegen": "npx playwright codegen https://app.staging.at.farm",
+    "run_tests_chromium": "npx playwright test --project=chromium",
+    "run_tests_safari": "npx playwright test --project=webkit",
+    "run_tests_firefox": "npx playwright test --project=firefox",
+    "run_tests_Chrome": "npx playwright test --project='Google Chrome'",
+    "run_tests_Edge": "npx playwright test --project='Microsoft Edge'",
+    "run_all_tests_headless": "npx playwright test",
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "format-all": "npm run format",
+    "test:unit": "mocha --recursive unit-tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaradigitallabs/pm-atfarm-qa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yaradigitallabs/pm-atfarm-qa/issues"
+  },
+  "homepage": "https://github.com/yaradigitallabs/pm-atfarm-qa#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^8.1.0",
+    "@playwright/test": "^1.43.0",
+    "@types/node": "^20.6.1",
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
+    "prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "moment": "^2.29.4",
+    "playwright": "^1.43.0"
+  }
+}
